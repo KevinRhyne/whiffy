@@ -1,25 +1,23 @@
-//import LCD stuff
-#include "mbed.h"
-#include "uLCD_4DGL.h"
+#include "LCDControl.h"
 
-uLCD_4DGL uLCD(p9,p10,p8); // serial tx, serial rx, reset pin;
 
-class LCDControl{
-    int strength;
-    bool mode;
-    public:
-    void update(int, bool);
-    void printStrength(int);
-    };
+
+LCDControl::LCDControl(){
+
+    uLCD = new uLCD_4DGL(p9,p10,p8); // serial tx, serial rx, reset pin;
     
-    void LCDControl::update(int x, bool y) { //do update stuff on LCD
-        strength = x;
-        mode = y;
+
+    
+}
+
+void LCDControl::update(int strength, bool mode) { //do update stuff on LCD
+    
         printStrength(strength);
-    }
+}
     
-    void LCDControl::printStrength(int x) {
-        uLCD.cls();
-        uLCD.printf("Signal Strenght: %d", x);
-    }
-    
+void LCDControl::printStrength(int strength) {
+
+    uLCD->cls();
+    uLCD->printf("printStrength's strength is %d", strength);
+
+}

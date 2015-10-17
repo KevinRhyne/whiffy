@@ -1,11 +1,9 @@
-#include <iostream>
+#include <stdio.h>
+#include <vector>
+#include "Reporter.h"
 
 using namespace std;
 
-class Reporter {
-    
-    Reporter() {
-        printf("Reporter init");
-    };
-    
+Reporter::Reporter(){ 
+    //Empty constructor
 };
