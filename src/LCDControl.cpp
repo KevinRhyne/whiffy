@@ -18,6 +18,6 @@ void LCDControl::update(int strength, bool mode) { //do update stuff on LCD
 void LCDControl::printStrength(int strength) {
 
     uLCD->cls();
-    uLCD->printf("printStrength's strength is %d", strength);
+    uLCD->printf("LCD strength: %d", strength);
 
 }

@@ -2,7 +2,10 @@
 
 
 
-AccessPoint::AccessPoint() {
-
+AccessPoint::AccessPoint(string ssid, int stren) {
+    
+    SSID = ssid;
+    strength = stren;
+    
     
 }
