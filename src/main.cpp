@@ -17,6 +17,10 @@ int main(){
     
     TestSuite tester;
     pc.printf("Tester created\n");
+    
+    pc.printf("START ReporterTest()\n");
+    tester.ReporterTest();
+    pc.printf("END ReporterTest()\n");
 
     tester.LCDTest();
     pc.printf("LCDTest done.\n");

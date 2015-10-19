@@ -13,11 +13,11 @@ class Reporter {
         Reporter();
         
     private:
-        //LEDControl led;
+        LEDControl led;
         LCDControl lcd;
         void update();
     
-        //vector<int> APs;
+        vector<int> APs;
     
 };
 

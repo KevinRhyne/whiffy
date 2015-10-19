@@ -2,6 +2,13 @@
 #include "LEDControl.h"
 #include "LCDControl.h"
 #include "WifiControl.h"
+#include "Reporter.h"
+
+void TestSuite::ReporterTest(){ 
+
+    Reporter report;
+
+}
 
 void TestSuite::LEDTest(){
      

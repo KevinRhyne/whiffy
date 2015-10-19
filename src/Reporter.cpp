@@ -4,6 +4,8 @@
 
 using namespace std;
 
-Reporter::Reporter(){ 
-    //Empty constructor
+Reporter::Reporter() : led(), lcd() { 
+
+    
+
 };
