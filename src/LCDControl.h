@@ -12,7 +12,7 @@ class LCDControl{
     
     public:
     
-    uLCD_4DGL *uLCD; 
+    uLCD_4DGL uLCD; 
     
     LCDControl();
     void update(int, bool);

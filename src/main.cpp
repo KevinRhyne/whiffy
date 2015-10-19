@@ -1,5 +1,5 @@
 #include "mbed.h"
-#include "Whiffy.cpp"
+#include "Whiffy.h"
 #include "LEDControl.h"
 #include "TestSuite.h"
 

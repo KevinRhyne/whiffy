@@ -1,23 +1,10 @@
-//Top level controller of Whiffy
+#include "Whiffy.h"
 
-#include "WifiControl.h"
-#include "Reporter.h"
 
-class Whiffy {
-    
-    WifiControl wifi;
-    Reporter reporter;
+Whiffy::Whiffy() : wifi(), reporter(){
     
     
-    Whiffy(){
-        
-    };
-
-
-
-
-
     
 };
-    
-    
+
+

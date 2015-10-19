@@ -56,6 +56,22 @@ void WifiControl::wifiGo()
  
 }
 
+char WifiControl::pollAP(){
+        
+        char polledAPs;
+        
+        pc->printf("\n---------- Polling APs privately ----------\r\n");
+        strcpy(snd, "AT+CWLAP\r\n");
+        SendCMD();
+        timeout=15;
+        getreply();
+        pc->printf(buf);
+        polledAPs = *buf;
+        
+        return polledAPs;
+            
+}
+
 void WifiControl::ESPsetbaudrate()
 {
     strcpy(snd, "AT+CIOBAUD=115200\r\n");   // change the numeric value to the required baudrate
