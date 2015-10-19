@@ -1,3 +1,6 @@
+#ifndef WHIFFY_H
+#define WHIFFY_H
+
 class Whiffy {
     
     WifiControl wifi;
@@ -7,3 +10,5 @@ class Whiffy {
     Whiffy(){
         
     };
+
+#endif

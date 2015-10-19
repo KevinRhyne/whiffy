@@ -1,3 +1,6 @@
+#ifndef RGBLED_H
+#define RGBLED_H
+
 #include "mbed.h"
 
 //RGB LED CLASS
@@ -11,3 +14,5 @@ private:
     PwmOut _bluepin;
     
 };
+
+#endif

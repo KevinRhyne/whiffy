@@ -1,3 +1,6 @@
+#ifndef ACCESSPOINT_H
+#define ACCESSPOINT_H
+
 #include "mbed.h"
 #include <string>
 
@@ -13,3 +16,6 @@ class AccessPoint {
         bool connected;
 
 };
+
+
+#endif

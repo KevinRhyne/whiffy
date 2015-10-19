@@ -1,3 +1,6 @@
+#ifndef WIFICONTROL_H
+#define WIFICONTROL_H
+
 #include <stdio.h>
 #include "mbed.h"
 
@@ -29,3 +32,7 @@ class WifiControl {
 //Serial pc(USBTX, USBRX);
 //Serial esp(p28, p27); // tx, rx
 //DigitalOut reset(p26);
+
+
+
+#endif

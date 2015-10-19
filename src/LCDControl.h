@@ -1,4 +1,6 @@
-//import LCD stuff
+#ifndef LCDCONTROL_H
+#define LCDCONTROL_H
+
 #include "mbed.h"
 #include "uLCD_4DGL.h"
 
@@ -18,4 +20,4 @@ class LCDControl{
 
 };
     
-    
+#endif

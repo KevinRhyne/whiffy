@@ -1,7 +1,10 @@
+#ifndef REPORTER_H
+#define REPORTER_H
+
 #include <stdio.h>
 #include <vector>
 #include "LCDControl.h"
-//#include "LEDControl.h"
+#include "LEDControl.h"
 
 
 
@@ -17,3 +20,5 @@ class Reporter {
         //vector<int> APs;
     
 };
+
+#endif

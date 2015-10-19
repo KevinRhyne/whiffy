@@ -1,7 +1,5 @@
 #include "LCDControl.h"
 
-
-
 LCDControl::LCDControl(){
 
     uLCD = new uLCD_4DGL(p9,p10,p8); // serial tx, serial rx, reset pin;
@@ -21,3 +19,4 @@ void LCDControl::printStrength(int strength) {
     uLCD->printf("LCD strength: %d", strength);
 
 }
+
