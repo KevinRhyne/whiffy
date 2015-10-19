@@ -11,11 +11,12 @@ public:
     Serial *esp;
 
     WifiControl();
-    void wifiGo();
-    char pollAP();
-    void ESPsetbaudrate();
-    void ESPconfig();
-    void SendCMD();
+    void pollAP(char *); // Return buffer of access points
+    void getIPMAC();
+    void connect(char *, char *); // Connect to SSID with PWD
+    void ESPsetbaudrate(); // Set baud rates
+    void ESPconfig(); // Setup code
+    void SendCMD(); 
     void getreply();
 
 private:
@@ -24,9 +25,6 @@ private:
 
     char buf[1024];
     char snd[255];
-
-    char ssid[32];     // enter WiFi router ssid inside the quotes
-    char pwd [32]; // enter WiFi router password inside the quotes
 
 
 };

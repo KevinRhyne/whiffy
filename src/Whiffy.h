@@ -10,7 +10,8 @@ class Whiffy {
     Reporter reporter;
     
     public:
-    Whiffy();
+        Whiffy();
+        void update();
 
 };
 

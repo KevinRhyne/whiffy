@@ -7,4 +7,8 @@ Whiffy::Whiffy() : wifi(), reporter(){
     
 };
 
+void Whiffy::update() {
+    
+    
+}
 

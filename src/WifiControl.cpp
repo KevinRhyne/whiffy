@@ -12,13 +12,7 @@ WifiControl::WifiControl(){
 
     strcpy(snd, "AT+CIOBAUD=115200\r\n");
     SendCMD();
-
     
-    
-}
-
-void WifiControl::wifiGo()
-{
     DigitalOut reset(p26);
     reset=0; //hardware reset for 8266
     pc->baud(115200);  // set what you want here depending on your terminal program speed
@@ -28,49 +22,56 @@ void WifiControl::wifiGo()
     timeout=2;
     getreply();
  
-    esp->baud(115200);   // change this to the new ESP8266 baudrate if it is changed at any time.
- 
-    //ESPsetbaudrate();   //******************  include this routine to set a different ESP8266 baudrate  ******************
- 
-    ESPconfig();        //******************  include Config to set the ESP8266 configuration  ***********************
- 
- 
- 
-    // continuosly get AP list and IP
-    while(1) {
-        pc->printf("\n---------- Listing Acces Points ----------\r\n");
-        strcpy(snd, "AT+CWLAP\r\n");
-        SendCMD();
-        timeout=15;
-        getreply();
-        pc->printf(buf);
-        wait(2);
-        pc->printf("\n---------- Get IP and MAC ----------\r\n");
-        strcpy(snd, "AT+CIFSR\r\n");
-        SendCMD();
-        timeout=10;
-        getreply();
-        pc->printf(buf);
-        wait(2);
-    }
- 
+    esp->baud(115200); 
+
+    
+    
 }
 
-char WifiControl::pollAP(){
-        
-        char polledAPs;
+
+void WifiControl::pollAP(char * results){
         
         pc->printf("\n---------- Polling APs privately ----------\r\n");
         strcpy(snd, "AT+CWLAP\r\n");
         SendCMD();
         timeout=15;
         getreply();
-        pc->printf(buf);
-        polledAPs = *buf;
-        
-        return polledAPs;
+        strcpy(results, buf);
+    
             
 }
+
+void WifiControl::getIPMAC() {
+    
+    pc->printf("\n---------- Get IP and MAC ----------\r\n");
+        strcpy(snd, "AT+CIFSR\r\n");
+        SendCMD();
+        timeout=10;
+        getreply();
+        pc->printf(buf);
+        wait(2);
+}
+
+void WifiControl::connect(char * ssid, char * pwd) { //32 byte chars
+
+    pc->printf("\n---------- Connecting to AP ----------\r\n");
+        pc->printf("ssid = %s   pwd = %s\r\n",ssid,pwd);
+        strcpy(snd, "AT+CWJAP=\"");
+        strcat(snd, ssid);
+        strcat(snd, "\",\"");
+        strcat(snd, pwd);
+        strcat(snd, "\"\r\n");
+        SendCMD();
+        timeout=10;
+        getreply();
+        pc->printf(buf);
+        
+}
+
+
+
+
+
 
 void WifiControl::ESPsetbaudrate()
 {
@@ -146,19 +147,12 @@ void WifiControl::ESPconfig()
     pc->printf(buf);
  
     wait(2);
- 
-    pc->printf("\n---------- Connecting to AP ----------\r\n");
-    pc->printf("ssid = %s   pwd = %s\r\n",ssid,pwd);
-    strcpy(snd, "AT+CWJAP=\"");
-    strcat(snd, ssid);
-    strcat(snd, "\",\"");
-    strcat(snd, pwd);
-    strcat(snd, "\"\r\n");
-    SendCMD();
-    timeout=10;
-    getreply();
-    pc->printf(buf);
- 
+    
+    char ssid[32] = "GTOther";
+    char pwd[32] = "GeorgeP@1927";
+    
+    connect(ssid, pwd);
+
     wait(5);
  
     pc->printf("\n---------- Get IP's ----------\r\n");
