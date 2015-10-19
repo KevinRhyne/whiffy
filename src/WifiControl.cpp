@@ -17,17 +17,59 @@ WifiControl::WifiControl(){
     
 }
 
+void WifiControl::wifiGo()
+{
+    DigitalOut reset(p26);
+    reset=0; //hardware reset for 8266
+    pc->baud(115200);  // set what you want here depending on your terminal program speed
+    pc->printf("\f\n\r-------------ESP8266 Hardware Reset-------------\n\r");
+    wait(0.5);
+    reset=1;
+    timeout=2;
+    getreply();
+ 
+    esp->baud(115200);   // change this to the new ESP8266 baudrate if it is changed at any time.
+ 
+    //ESPsetbaudrate();   //******************  include this routine to set a different ESP8266 baudrate  ******************
+ 
+    ESPconfig();        //******************  include Config to set the ESP8266 configuration  ***********************
+ 
+ 
+ 
+    // continuosly get AP list and IP
+    while(1) {
+        pc->printf("\n---------- Listing Acces Points ----------\r\n");
+        strcpy(snd, "AT+CWLAP\r\n");
+        SendCMD();
+        timeout=15;
+        getreply();
+        pc->printf(buf);
+        wait(2);
+        pc->printf("\n---------- Get IP and MAC ----------\r\n");
+        strcpy(snd, "AT+CIFSR\r\n");
+        SendCMD();
+        timeout=10;
+        getreply();
+        pc->printf(buf);
+        wait(2);
+    }
+ 
+}
+
 void WifiControl::ESPsetbaudrate()
 {
-    //strcpy(snd, "AT+CIOBAUD=115200\r\n");   // change the numeric value to the required baudrate
-    //SendCMD();
+    strcpy(snd, "AT+CIOBAUD=115200\r\n");   // change the numeric value to the required baudrate
+    SendCMD();
 }
  
 //  +++++++++++++++++++++++++++++++++ This is for ESP8266 config only, run this once to set up the ESP8266 +++++++++++++++
 void WifiControl::ESPconfig()
 {
     
+
     
+    strcpy(snd, "AT+CIOBAUD=115200\r\n");   // change the numeric value to the required baudrate
+    SendCMD();
     wait(5);
     strcpy(snd,"AT\r\n");
     SendCMD();

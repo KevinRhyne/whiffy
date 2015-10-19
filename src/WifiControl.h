@@ -7,6 +7,7 @@ class WifiControl {
         Serial *esp;
     
         WifiControl();
+        void wifiGo();
         void ESPsetbaudrate();
         void ESPconfig();
         void SendCMD();

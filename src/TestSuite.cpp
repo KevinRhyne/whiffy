@@ -22,7 +22,9 @@ void TestSuite::LCDTest(){
 void TestSuite::WifiTest(){
     
     WifiControl wifi;
-    wifi.ESPconfig();
+    wifi.wifiGo();
+    //wifi.ESPsetbaudrate();
+    //wifi.ESPconfig();
 
     
     }
