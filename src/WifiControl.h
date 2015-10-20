@@ -3,19 +3,21 @@
 
 #include <stdio.h>
 #include "mbed.h"
+#include <string>
 
 class WifiControl
 {
 public:
-    Serial *pc;
-    Serial *esp;
+    Serial pc;
+    Serial esp;
 
     WifiControl();
-    void pollAP(char *); // Return buffer of access points
+    string pollAP(); // Return buffer of access points
     void getIPMAC();
     void connect(char *, char *); // Connect to SSID with PWD
     void ESPsetbaudrate(); // Set baud rates
     void ESPconfig(); // Setup code
+    void quickConfig();
     void SendCMD(); 
     void getreply();
 

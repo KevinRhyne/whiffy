@@ -8,6 +8,10 @@ class AccessPoint {
     
     public:
         AccessPoint(string, int);
+        void setSSID(string);
+        void setStrength(int);
+        string getSSID();
+        int getStrength();
     
     private:
         string SSID;

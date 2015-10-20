@@ -2,6 +2,8 @@
 #include "Whiffy.h"
 #include "LEDControl.h"
 #include "TestSuite.h"
+#include <string>
+#include "APVectorBuilder.h"
 
 
 //Test cases for all functions
@@ -18,6 +20,9 @@ void test(){
     TestSuite tester;
     pc.printf("Tester created\r\n");
     
+    pc.printf("VectorBuilder test");
+    tester.vectorTest();
+    
     pc.printf("START ReporterTest()\r\n");
     tester.ReporterTest();
     pc.printf("END ReporterTest()\r\n");
@@ -33,17 +38,22 @@ void test(){
 
 }
 
+
+
 int main(){
-    
-    //Open serial
     Serial pc(USBTX, USBRX);
     pc.baud(115200);
+    //Open serial
+    //vectortest();
     
     WifiControl wifi;
-    char results[1024];
-    wifi.pollAP(results);
+    
+    //wifi.ESPconfig();
+
+    
+    string real(wifi.pollAP());
     pc.printf("Access points found: \r\n");
-    pc.printf(results);
+    pc.printf("%s", real.c_str());
 
     
     // test();

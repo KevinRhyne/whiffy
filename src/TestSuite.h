@@ -7,6 +7,7 @@ class TestSuite{
         void LEDTest();
         void LCDTest();
         void WifiTest();
+        void vectorTest();
     
 };
 
