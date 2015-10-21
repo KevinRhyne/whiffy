@@ -41,19 +41,10 @@ void test(){
 
 
 int main(){
-    Serial pc(USBTX, USBRX);
-    pc.baud(115200);
-    //Open serial
-    //vectortest();
     
-    WifiControl wifi;
+    Whiffy whiffy;
+    whiffy.update();
     
-    //wifi.ESPconfig();
-
-    
-    string real(wifi.pollAP());
-    pc.printf("Access points found: \r\n");
-    pc.printf("%s", real.c_str());
 
     
     // test();

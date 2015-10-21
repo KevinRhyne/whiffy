@@ -5,21 +5,21 @@
 #include <vector>
 #include "LCDControl.h"
 #include "LEDControl.h"
+#include "AccessPoint.h"
 
 
 
 class Reporter {
     public:
         Reporter();
+        void update(vector<AccessPoint>, bool, string);
         
     private:
         bool mode;
         LEDControl led;
         LCDControl lcd;
-        void update();
+        int averager(vector<AccessPoint>);
         
-    
-        vector<int> APs;
     
 };
 

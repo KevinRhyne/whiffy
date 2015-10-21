@@ -3,6 +3,7 @@
 
 #include "WifiControl.h"
 #include "Reporter.h"
+#include "APVectorBuilder.h"
 
 class Whiffy {
     

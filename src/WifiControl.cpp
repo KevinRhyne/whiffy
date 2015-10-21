@@ -6,6 +6,8 @@ WifiControl::WifiControl() : pc(USBTX, USBRX), esp(p28, p27) {
     
     
     DigitalOut reset(p26);
+    AnalogIn configSwitch(p15);
+    
     reset=0; //hardware reset for 8266
     pc.baud(115200);  // set what you want here depending on your terminal program speed
     pc.printf("\f\n\r-------------ESP8266 Hardware Reset-------------\n\r");
@@ -20,6 +22,22 @@ WifiControl::WifiControl() : pc(USBTX, USBRX), esp(p28, p27) {
  
     //ESPconfig();        //******************  include Config to set the ESP8266 configuration  ***********************
 
+    
+
+    if ( configSwitch > 0.5f ) {
+        pc.printf("CONFIG SWITCH THROWN");
+        ESPconfig();
+    }
+    
+    
+    strcpy(snd,"AT+RST\r\n");
+    SendCMD();
+    wait(3);
+
+
+    
+    
+    
     
     
 }
@@ -37,6 +55,7 @@ string WifiControl::pollAP(){
     SendCMD();
     timeout=15;
     getreply();
+    pc.printf(buf);
     string results(buf);
     pc.printf(" "); //Serial weirdness.
     return results;

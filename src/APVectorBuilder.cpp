@@ -5,12 +5,10 @@ vector<AccessPoint> APVectorBuilder::build(string rawstr){
     Serial pc(USBTX, USBRX);
     pc.baud(115200);
     
-    pc.printf("\r\n\r\n -------- Hello from Vectorbuilder\r\n");
+    //pc.printf("\r\n\r\nHello from Vectorbuilder\r\n");
     vector<AccessPoint> APList;
     vector<string> Vssid;
     vector<int> Vstrength;
-    
-    APList.push_back(AccessPoint("TestSSID", 69));
     
     string curSSID;
     string curStrength;
@@ -28,7 +26,7 @@ vector<AccessPoint> APVectorBuilder::build(string rawstr){
             curSSID += rawstr[i+1];
             i++;
         }
-        pc.printf("\r\n ADDING NEW ELEMENT: %s", curSSID.c_str());
+        //pc.printf("\r\n ADDING NEW ELEMENT: %s", curSSID.c_str());
         currentAP.setSSID(curSSID);
         //Vssid.push_back(curSSID);
         curSSID = "";
@@ -46,9 +44,11 @@ vector<AccessPoint> APVectorBuilder::build(string rawstr){
         }
         
         APList.push_back(currentAP);
-    
-    }
         
+        
+    }
+    
+    
     return APList;
     
 }

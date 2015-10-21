@@ -3,6 +3,7 @@
 
 #include "mbed.h"
 #include "uLCD_4DGL.h"
+#include <string>
 
 class LCDControl{
     

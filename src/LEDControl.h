@@ -5,12 +5,12 @@
 
 class LEDControl{
     
-    int strength;
+    float strength;
     
     
     public:
         //LEDControl();
-        void update(int);
+        void update(float);
     
     };
     
