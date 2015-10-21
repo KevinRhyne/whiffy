@@ -17,7 +17,8 @@ class LCDControl{
     
     LCDControl();
     void update(int, bool);
-    void printStrength(int);
+    void printStrength(float);
+    void printString(string);
 
 };
     

@@ -5,7 +5,7 @@ Whiffy::Whiffy() : wifi(), reporter(){
     
     Serial pc(USBTX, USBRX);
     pc.baud(115200);
-    pc.printf("\r\nReporter & WifiControl created\r\n");
+    pc.printf("\r\nReporter & WifiControl created  \r\n");
     
     
     
@@ -19,13 +19,28 @@ void Whiffy::update() {
     
     AnalogIn moder(p16);
     
+    bool mode;
+        if(moder > 0.5f) {
+            mode = true;
+            wait(2);
+            pc.printf("\n\rMode: AVERAGE\n\r");
+            wait(2);
+        } else {
+            mode = false;
+            wait(2);
+            pc.printf("\r\nMode: CONNECTED\r\n");
+            wait(2);
+        }
+        
     
     wait(2);
     pc.printf("\r\n\r\nCreating APVectorBuilder\r\n");
     wait(2);
     APVectorBuilder apBuilder;
-    wait(2);
-    while(true) {
+    wait(2);    
+    
+    while(true) {    
+    
         pc.printf("\r\nGetting AP list\r\n");
         wait(2);
         string real(wifi.pollAP()); //Get list of APs
@@ -34,7 +49,10 @@ void Whiffy::update() {
         wait(1);
         vector<AccessPoint> APList(apBuilder.build(real)); //Finish building AP list
         wait(2);
-        bool mode;
+        wait(1);
+            
+        
+        reporter.update(APList, mode, "AndroidAP");
         
         if(moder > 0.5f) {
             mode = true;
@@ -43,10 +61,6 @@ void Whiffy::update() {
             mode = false;
             pc.printf("Mode: CONNECTED");
         }
-        wait(1);
-            
-        
-        reporter.update(APList, mode, "AndroidAP");
     }
     
     

@@ -11,7 +11,7 @@ class LEDControl{
     public:
         //LEDControl();
         void update(float);
-    
+        void status(bool);
     };
     
 #endif

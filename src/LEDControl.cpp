@@ -16,15 +16,23 @@ void LEDControl::update(float stren){
         wait(2);
         pc.printf("Passed strength: %f\r\n", strength);
         
-        float green = (100-strength) / 95;
-        float red = strength / 100;
+        float green = (100-strength) / 90;
+        float red = strength / 90;
         wait(1);
         pc.printf("Calculated green: %f\r\n", green);
         wait(2);
         pc.printf("Calculated red: %f\r\n", red);
         
         
-        myRGBled1.write(red , green ,0.0); //red
-        myRGBled2.write(red,green,0.0); //red
+        myRGBled2.write(red , green ,0.0); //red
             
+}
+
+void LEDControl::status(bool mode){
+    
+    if(mode)
+        myRGBled1.write(1 , 0 ,0.0); //red
+    else
+        myRGBled1.write(0 , 1 ,0.0); //red
+        
 }

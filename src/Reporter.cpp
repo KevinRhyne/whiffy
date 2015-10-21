@@ -25,13 +25,19 @@ void Reporter::update(vector<AccessPoint> currentAPs, bool mode, string focus){
                 curatedAPs.push_back(currentAPs[i]);
             }
             
-            for(int i = 0; i < currentAPs.size(); i++){ //Waste of memory.. fix this
+            for(int i = 0; i < currentAPs.size(); i++){
                 if (currentAPs[i].getSSID() == focus) //Leave connected AP
             connectedAP.push_back(currentAPs[i]);
     }
+    
+        
             if(mode == true) {
+                lcd.printString("Mode: AVERAGE\n");
+                led.status(true);
                 averager(curatedAPs);
             } else {
+                lcd.printString("Mode: CONNECTED\n");
+                led.status(false);
                 averager(connectedAP);
             }
                 
@@ -61,6 +67,7 @@ int Reporter::averager(vector<AccessPoint> currentAPs) {
     average = sum / currentAPs.size();
     
     pc.printf("Average was %f\r\n", average);
+    lcd.printStrength(average);
     wait(1);
     led.update(average);
     
